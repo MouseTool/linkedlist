@@ -58,3 +58,11 @@ assert(t:back() == ":u")
 
 dumptbl(t:to_list())
 assert(#t:to_list() == #t:to_reversed_list())
+
+do
+    local l = t:to_list()
+    for i, v in t:ipairs() do
+        assert(v == l[i])
+    end
+end
+

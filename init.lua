@@ -128,6 +128,21 @@ function LinkedList:get(position)
     return node.value
 end
 
+--- Returns an iterator for the linked list
+--- @return fun(_: LinkedListNode, i?: integer):integer, any
+--- @return LinkedListNode
+--- @return integer i
+function LinkedList:ipairs()
+    local node = self._front
+    local function iter(_, i)
+        if not node then return nil end
+        local val = node.value
+        node = node.next
+        return i + 1, val
+    end
+    return iter, node, 0
+end
+
 --- Retrieves the elements in raw list form
 --- @return any[]
 function LinkedList:to_list()

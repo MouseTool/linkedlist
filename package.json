@@ -1,6 +1,6 @@
 {
   "name": "@mousetool/linkedlist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generic linked list structure",
   "main": "dummy.js",
   "onelua": {
