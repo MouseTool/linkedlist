@@ -50,9 +50,10 @@ end
 --- Inserts an element after the specified position
 --- @param afterPosition number Index before which the content will be inserted
 --- @param value any Element value to insert
+--- @return boolean success
 function LinkedList:insert_after(afterPosition, value)
     if afterPosition <= 0  or afterPosition > self.size then
-        return nil
+        return true
     end
     local before_node = self._front
     for _ = 2, afterPosition do
@@ -72,6 +73,34 @@ function LinkedList:insert_after(afterPosition, value)
         self._back = node
     end
     self.size = self.size + 1
+    return true
+end
+
+--- Removes an element after the specified position
+--- @param position number Index of which the content will be removed
+--- @return boolean success
+function LinkedList:remove(position)
+    if position <= 0  or position > self.size then
+        return false
+    end
+    local target_node = self._front
+    for _ = 2, position do
+        target_node = target_node.next
+    end
+    if target_node.prev then
+        target_node.prev.next = target_node.next
+    else
+        -- This node is the front
+        self._front = target_node.next
+    end
+    if target_node.next then
+        target_node.next.prev = target_node.prev
+    else
+        -- This node is the back
+        self._back = target_node.prev
+    end
+    self.size = self.size - 1
+    return true
 end
 
 --- Removes and retrieves the last element

@@ -56,6 +56,14 @@ t:insert_after(t.size, ":u")
 assert(t:get(t.size) == ":u")
 assert(t:back() == ":u")
 
+t:push_back(":P")
+t:push_back(":8")
+assert(t:get(t.size - 1) == ":P")
+t:remove(t.size - 1)
+assert(t:get(t.size - 1) == ":u")
+assert(t:pop_back() == ":8")
+assert(t:back() == ":u")
+
 dumptbl(t:to_list())
 assert(#t:to_list() == #t:to_reversed_list())
 
@@ -70,3 +78,14 @@ do
     end
 end
 
+do
+    local ts = LinkedList.new({"one", "two"})
+    ts:remove(1)
+    assert(ts:front() == "two")
+    assert(ts:back() == "two")
+
+    ts = LinkedList.new({"one", "two"})
+    ts:remove(2)
+    assert(ts:front() == "one")
+    assert(ts:back() == "one")
+end
