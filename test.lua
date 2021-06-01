@@ -64,5 +64,9 @@ do
     for i, v in t:ipairs() do
         assert(v == l[i])
     end
+
+    for i, v in t:revipairs() do
+        assert(v == l[i])
+    end
 end
 

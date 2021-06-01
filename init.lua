@@ -143,6 +143,23 @@ function LinkedList:ipairs()
     return iter, node, 0
 end
 
+--- Returns an iterator for the linked list.
+--- Similar to `ipairs()` but iterates in reverse (from back to front).
+--- The index returned starts from the back instead of front.
+--- @return fun(_: LinkedListNode, i?: integer):integer, any
+--- @return LinkedListNode
+--- @return integer i
+function LinkedList:revipairs()
+    local node = self._back
+    local function iter(_, i)
+        if not node then return nil end
+        local val = node.value
+        node = node.prev
+        return i - 1, val
+    end
+    return iter, node, self.size + 1
+end
+
 --- Retrieves the elements in raw list form
 --- @return any[]
 function LinkedList:to_list()
