@@ -76,8 +76,8 @@ function LinkedList:insert_after(afterPosition, value)
     return true
 end
 
---- Removes an element after the specified position
---- @param position number Index of which the content will be removed
+--- Removes an element at the specified position
+--- @param position number Index at which the content will be removed
 --- @return boolean success
 function LinkedList:remove(position)
     if position <= 0  or position > self.size then
